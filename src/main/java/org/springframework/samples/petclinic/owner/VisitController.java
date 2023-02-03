@@ -57,6 +57,22 @@ class VisitController {
 	 * @return Pet
 	 */
 	@ModelAttribute("visit")
+
+        /*
+        * loadPetWithVisit
+        *
+        * Description: This method is used to load a pet with a visit.
+        *
+        * Parameters:
+        * 		@param ownerId - The id of the owner of the pet.
+        * 		@param petId - The id of the pet.
+        * 		@param model - The model to be used.
+        *
+        * Return type: Visit - The visit object.
+        *
+        * Usage: Visit visit = loadPetWithVisit(ownerId, petId, model);
+        *
+        */
 	public Visit loadPetWithVisit(@PathVariable("ownerId") int ownerId, @PathVariable("petId") int petId,
 			Map<String, Object> model) {
 		Owner owner = this.owners.findById(ownerId);
@@ -80,6 +96,23 @@ class VisitController {
 	// Spring MVC calls method loadPetWithVisit(...) before processNewVisitForm is
 	// called
 	@PostMapping("/owners/{ownerId}/pets/{petId}/visits/new")
+
+        /*
+        * Method name: processNewVisitForm
+        *
+        * Description: This method is used to process a new visit form.
+        *
+        * Parameters:
+        * 		@param owner - The owner of the pet.
+        * 		@param petId - The id of the pet.
+        * 		@param visit - The visit object.
+        * 		@param result - The binding result.
+        *
+        * Return type: String - The redirect URL.
+        *
+        * Usage: String redirectUrl = processNewVisitForm(owner, petId, visit, result);
+        *
+        */
 	public String processNewVisitForm(@ModelAttribute Owner owner, @PathVariable int petId, @Valid Visit visit,
 			BindingResult result) {
 		if (result.hasErrors()) {
